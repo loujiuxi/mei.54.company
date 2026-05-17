@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>悦容美发沙龙 - 专业造型 · 匠心服务</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #d4a5a5;
+            --secondary-color: #f5e6e8;
+            --accent-color: #b8909a;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --white: #ffffff;
+            --gradient-start: #ffecd2;
+            --gradient-end: #fcb69f;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+        }
+
+        /* 导航栏 */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* 英雄区域 */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(212, 165, 165, 0.3) 0%, rgba(248, 200, 200, 0.3) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23d4a5a5" fill-opacity="0.2" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 165, 165, 0.4) 0%, transparent 70%);
+            border-radius: 50%;
+            top: 10%;
+            right: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(184, 144, 154, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: 20%;
+            left: 15%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-dark), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(212, 165, 165, 0.4);
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 165, 165, 0.6);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 通用部分样式 */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            color: var(--text-dark);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 价目表 */
+        #pricing {
+            background: white;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, #fff 0%, #fafafa 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(212, 165, 165, 0.2);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(212, 165, 165, 0.2);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .service-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .service-item:last-child {
+            border-bottom: none;
+        }
+
+        .service-name {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .service-price {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* 作品展示 */
+        #gallery {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, 
+                rgba(212, 165, 165, 0.8) 0%, 
+                rgba(184, 144, 154, 0.6) 50%,
+                rgba(248, 200, 200, 0.8) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(212, 165, 165, 0.4);
+        }
+
+        .gallery-item-content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .gallery-item:hover .gallery-item-content {
+            opacity: 1;
+        }
+
+        .gallery-item-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-item-content p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        }
+
+        /* 预约方式 */
+        #contact {
+            background: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, #fff 0%, #fafafa 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(212, 165, 165, 0.2);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212, 165, 165, 0.2);
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .contact-card h3 {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .contact-card a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: var(--accent-color);
+        }
+
+        /* 预约表单 */
+        .booking-form {
+            max-width: 600px;
+            margin: 3rem auto 0;
+            background: linear-gradient(135deg, #fff 0%, #fafafa 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(212, 165, 165, 0.4);
+        }
+
+        /* 页脚 */
+        footer {
+            background: linear-gradient(135deg, var(--text-dark), #1a252f);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-info {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .pricing-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-form {
+                padding: 2rem;
+            }
+        }
+
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 返回顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(212, 165, 165, 0.4);
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">✂️ 悦容美发沙龙</div>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#pricing">价目表</a></li>
+                <li><a href="#gallery">作品展示</a></li>
+                <li><a href="#contact">预约方式</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>悦容美发沙龙</h1>
+            <p>专业造型 · 匠心服务 · 焕发您的独特魅力</p>
+            <a href="#contact" class="cta-button">立即预约</a>
+        </div>
+    </section>
+
+    <!-- 价目表 -->
+    <section id="pricing">
+        <div class="container">
+            <h2 class="section-title">服务价目表</h2>
+            <div class="pricing-grid">
+                <!-- 剪发服务 -->
+                <div class="pricing-card">
+                    <h3>💇‍♀️ 剪发服务</h3>
+                    <div class="service-item">
+                        <span class="service-name">女士精剪</span>
+                        <span class="service-price">¥128</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">男士精剪</span>
+                        <span class="service-price">¥68</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">儿童理发</span>
+                        <span class="service-price">¥48</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">刘海修剪</span>
+                        <span class="service-price">¥38</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">设计剪发</span>
+                        <span class="service-price">¥198</span>
+                    </div>
+                </div>
+
+                <!-- 染发服务 -->
+                <div class="pricing-card">
+                    <h3>🎨 染发服务</h3>
+                    <div class="service-item">
+                        <span class="service-name">单色染发</span>
+                        <span class="service-price">¥268</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">挑染/渐变</span>
+                        <span class="service-price">¥388</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">全头染发</span>
+                        <span class="service-price">¥468</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">补染发根</span>
+                        <span class="service-price">¥168</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">潮色染发</span>
+                        <span class="service-price">¥588</span>
+                    </div>
+                </div>
+
+                <!-- 烫发服务 -->
+                <div class="pricing-card">
+                    <h3>〰️ 烫发服务</h3>
+                    <div class="service-item">
+                        <span class="service-name">冷烫</span>
+                        <span class="service-price">¥368</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">热烫</span>
+                        <span class="service-price">¥468</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">数码烫</span>
+                        <span class="service-price">¥568</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">蛋白矫正</span>
+                        <span class="service-price">¥688</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">纹理烫</span>
+                        <span class="service-price">¥398</span>
+                    </div>
+                </div>
+
+                <!-- 护理服务 -->
+                <div class="pricing-card">
+                    <h3>💆‍♀️ 护理服务</h3>
+                    <div class="service-item">
+                        <span class="service-name">基础护理</span>
+                        <span class="service-price">¥98</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">深层滋养</span>
+                        <span class="service-price">¥168</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">头皮护理</span>
+                        <span class="service-price">¥198</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">角蛋白护理</span>
+                        <span class="service-price">¥288</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">精油SPA</span>
+                        <span class="service-price">¥238</span>
+                    </div>
+                </div>
+
+                <!-- 造型服务 -->
+                <div class="pricing-card">
+                    <h3>✨ 造型服务</h3>
+                    <div class="service-item">
+                        <span class="service-name">洗吹造型</span>
+                        <span class="service-price">¥68</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">新娘造型</span>
+                        <span class="service-price">¥888</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">晚会造型</span>
+                        <span class="service-price">¥388</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">编发造型</span>
+                        <span class="service-price">¥168</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">接发服务</span>
+                        <span class="service-price">¥1280</span>
+                    </div>
+                </div>
+
+                <!-- 套餐优惠 -->
+                <div class="pricing-card">
+                    <h3>🎁 套餐优惠</h3>
+                    <div class="service-item">
+                        <span class="service-name">剪+染套餐</span>
+                        <span class="service-price">¥358</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">剪+烫套餐</span>
+                        <span class="service-price">¥458</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">烫+染套餐</span>
+                        <span class="service-price">¥688</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">全套护理套餐</span>
+                        <span class="service-price">¥888</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">会员年卡</span>
+                        <span class="service-price">¥2980</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品展示 -->
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-title">作品展示</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">💇‍♀️</div>
+                    <div class="gallery-item-content">
+                        <h4>气质短发造型</h4>
+                        <p>清新自然 · 修饰脸型</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">🎨</div>
+                    <div class="gallery-item-content">
+                        <h4>奶茶色染发</h4>
+                        <p>温柔显白 · 时尚百搭</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">〰️</div>
+                    <div class="gallery-item-content">
+                        <h4>法式大波浪</h4>
+                        <p>浪漫优雅 · 慵懒风情</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">✨</div>
+                    <div class="gallery-item-content">
+                        <h4>韩式空气刘海</h4>
+                        <p>减龄神器 · 甜美可爱</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">💫</div>
+                    <div class="gallery-item-content">
+                        <h4>渐变挑染</h4>
+                        <p>个性时尚 · 层次丰富</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">🌸</div>
+                    <div class="gallery-item-content">
+                        <h4>新娘造型</h4>
+                        <p>精致完美 · 浪漫唯美</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">👑</div>
+                    <div class="gallery-item-content">
+                        <h4>男士商务发型</h4>
+                        <p>干练利落 · 精神焕发</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">🌈</div>
+                    <div class="gallery-item-content">
+                        <h4>梦幻紫粉色</h4>
+                        <p>独特个性 · 梦幻唯美</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 预约方式 -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">预约方式</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h3>电话预约</h3>
+                    <p>预约热线<br><a href="tel:400-888-6666">400-888-6666</a><br>营业时间: 9:00-21:00</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">💬</div>
+                    <h3>微信预约</h3>
+                    <p>扫码添加客服微信<br>微信号: YRSalon2024<br>一对一专属服务</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3>门店地址</h3>
+                    <p>北京市朝阳区建国路88号<br>悦容大厦3层<br>地铁1号线大望路站B出口</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">⏰</div>
+                    <h3>营业时间</h3>
+                    <p>周一至周五: 10:00-21:00<br>周六周日: 9:00-22:00<br>节假日正常营业</p>
+                </div>
+            </div>
+
+            <!-- 在线预约表单 -->
+            <div class="booking-form">
+                <h3 style="text-align: center; margin-bottom: 2rem; color: var(--primary-color);">在线预约</h3>
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="name">姓名</label>
+                        <input type="text" id="name" name="name" placeholder="请输入您的姓名" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">联系电话</label>
+                        <input type="tel" id="phone" name="phone" placeholder="请输入您的手机号码" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">服务项目</label>
+                        <select id="service" name="service" required>
+                            <option value="">请选择服务项目</option>
+                            <option value="cut">剪发服务</option>
+                            <option value="color">染发服务</option>
+                            <option value="perm">烫发服务</option>
+                            <option value="care">护理服务</option>
+                            <option value="style">造型服务</option>
+                            <option value="package">套餐服务</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">预约日期</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">预约时间</label>
+                        <select id="time" name="time" required>
+                            <option value="">请选择时间段</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="12:00">12:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+                            <option value="18:00">18:00</option>
+                            <option value="19:00">19:00</option>
+                            <option value="20:00">20:00</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">备注信息</label>
+                        <textarea id="notes" name="notes" rows="3" placeholder="如有特殊需求请在此说明"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">提交预约</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">✂️ 悦容美发沙龙</div>
+            <p class="footer-info">专业造型 · 匠心服务 · 焕发您的独特魅力</p>
+            <div class="footer-links">
+                <a href="#home">首页</a>
+                <a href="#pricing">价目表</a>
+                <a href="#gallery">作品展示</a>
+                <a href="#contact">预约方式</a>
+            </div>
+            <p class="copyright">© 2024 悦容美发沙龙 版权所有 | 京ICP备12345678号</p>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 返回顶部按钮
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 表单提交
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            alert('预约成功！\n\n我们会尽快与您联系确认预约信息。\n感谢您选择悦容美发沙龙！');
+            
+            this.reset();
+        });
+
+        // 设置日期选择器的最小日期为今天
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('date').setAttribute('min', today);
+
+        // 导航栏滚动效果
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
+
+<!-- AIGC: {"Label":"value1","ContentProducer":"001191110000802100433B11010001191110000802100433B11010","ProduceID":"3aaa13f5-a862-4555-bbbc-d709649581f4","ReservedCode1":"72dafc97cd38b92e5f3d5cdfd0dfbbe6","ContentPropagator":"001191110000802100433B11010001191110000802100433B11010","PropagateID":"924ab730-9b60-474a-8652-efccb3a98c20","ReservedCode2":"2734827274df537123a472bf4de01eb5"} -->
+</body>
+</html>
